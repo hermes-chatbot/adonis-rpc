@@ -1,3 +1,3 @@
-import RedisRPCProvider from './providers/RedisRPCProvider'
+import RPCProvider from './providers/RPCProvider'
 
-export default RedisRPCProvider
+export default RPCProvider

@@ -4,19 +4,16 @@
   "description": "RPC Provider for Adonis 5",
   "main": "build/index.js",
   "scripts": {
-    "pretest": "npm run lint",
+    "pretest": "yarn lint",
     "test": "node japaFile.ts",
     "mrm": "mrm --preset=@adonisjs/mrm-preset",
     "clean": "del build",
-    "compile": "npm run lint && npm run clean && tsc",
-    "build": "npm run compile",
-    "prepublishOnly": "npm run build",
+    "compile": "yarn lint && yarn clean && tsc",
+    "build": "yarn compile",
+    "prepublishOnly": "yarn build",
     "lint": "eslint . --ext=.ts",
     "format": "prettier --write .",
-    "commit": "git-cz",
-    "release": "np",
-    "version": "npm run build",
-    "sync-labels": "github-label-sync --labels ./node_modules/@adonisjs/mrm-preset/gh-labels.json reg2005/adonis5-redis-rpc"
+    "release": "np"
   },
   "repository": {
     "type": "git",
@@ -38,17 +35,12 @@
     "@adonisjs/mrm-preset": "^4.1.0",
     "@adonisjs/require-ts": "^2.0.5",
     "@types/node": "^15.12.2",
-    "@types/uuid": "^8.3.0",
     "adonis-provider-tester": "git://github.com/VladyslavParashchenko/adonis-provider-tester.git#main",
-    "commitizen": "^4.2.4",
-    "cz-conventional-changelog": "^3.3.0",
     "del-cli": "^4.0.0",
-    "doctoc": "^2.0.1",
     "eslint": "^7.28.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-adonis": "^1.3.2",
     "eslint-plugin-prettier": "^3.4.0",
-    "github-label-sync": "^2.0.1",
     "husky": "^6.0.0",
     "japa": "^3.1.1",
     "mrm": "^3.0.2",
@@ -58,10 +50,7 @@
   },
   "dependencies": {
     "@hermes-chat/redis-rpc": "^2.0.4",
-    "@poppinss/manager": "^4.0.3",
-    "debug": "^4.3.1",
-    "serialize-error": "^8.1.0",
-    "uuid": "^8.3.2"
+    "@poppinss/manager": "^4.0.3"
   },
   "types": "build/adonis-typings/index.d.ts",
   "typings": "build/adonis-typings/index.d.ts",
@@ -73,11 +62,6 @@
     "build/src",
     "build/providers"
   ],
-  "config": {
-    "commitizen": {
-      "path": "cz-conventional-changelog"
-    }
-  },
   "np": {
     "contents": ".",
     "anyBranch": false
