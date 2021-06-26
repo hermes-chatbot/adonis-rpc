@@ -1,13 +1,16 @@
 declare module '@ioc:Hermes/RPC' {
   import { ManagerContract } from '@poppinss/manager'
-  import { RedisRPC } from '@hermes-chat/redis-rpc'
+  import { RedisRPC, RedisRpcOptions } from '@hermes-chat/redis-rpc'
 
   export interface RPCTransportContract {
     register(methodName: string, handler: (data: any) => Promise<any> | any): void
     call(methodName: string, params: any): Promise<any>
   }
 
-  export interface RedisRPCTransportConfig {
+  export interface BaseRPCTransportConfig {
+    driver: string
+  }
+  export interface RedisRPCTransportConfig extends BaseRPCTransportConfig, RedisRpcOptions {
     driver: 'redis'
     channels: {
       request: `rpc:${string}`
