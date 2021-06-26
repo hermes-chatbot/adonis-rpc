@@ -17,12 +17,8 @@ declare module '@ioc:Hermes/RPC' {
 
   export interface RedisRPCTransportContract extends RedisRPC {}
 
-  export interface RPCTransportList {
-    redis: {
-      implementation: RedisRPCTransportContract
-      config: RedisRPCTransportConfig
-    }
-  }
+  // Must be set on the user land using declaration merging
+  export interface RPCTransportList {}
 
   export type RPCMappings = Record<
     keyof RPCTransportList,
