@@ -1,6 +1,6 @@
 {
   "name": "@hermes-chat/adonis-rpc",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "RPC Provider for Adonis 5",
   "main": "build/index.js",
   "scripts": {
@@ -49,7 +49,7 @@
     "typescript": "^4.3.2"
   },
   "dependencies": {
-    "@hermes-chat/redis-rpc": "^2.0.4",
+    "@hermes-chat/redis-rpc": "^2.0.7",
     "@poppinss/manager": "^4.0.3"
   },
   "types": "build/adonis-typings/index.d.ts",
