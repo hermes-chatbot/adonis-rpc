@@ -34,6 +34,7 @@ export default class RPC
   }
 
   protected getMappingDriver(mappingName: keyof RPCTransportList) {
+    // @ts-ignore
     return this.config.transports[mappingName].driver
   }
 }
