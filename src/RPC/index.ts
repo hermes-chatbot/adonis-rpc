@@ -12,7 +12,7 @@ export default class RPC
   extends Manager<any, RPCTransportContract, RPCTransportContract, RPCMappings>
   implements RPCManagerContract
 {
-  protected singleton = false
+  protected singleton = true
 
   constructor(private config: RPCConfig) {
     super({})
