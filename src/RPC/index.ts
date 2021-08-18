@@ -1,3 +1,4 @@
+import { ApplicationContract } from '@ioc:Adonis/Core/Application'
 import { RedisRPC } from '@hermes-chat/redis-rpc'
 import {
   RPCConfig,
@@ -7,15 +8,31 @@ import {
   RPCTransportList,
 } from '@ioc:Hermes/RPC'
 import { Manager } from '@poppinss/manager'
+import { IocResolver } from '../IocResolver'
 
 export default class RPC
   extends Manager<any, RPCTransportContract, RPCTransportContract, RPCMappings>
-  implements RPCManagerContract
+  implements RPCManagerContract, RPCTransportContract
 {
   protected singleton = true
 
-  constructor(private config: RPCConfig) {
+  protected iocResolver?: IocResolver
+
+  constructor(private config: RPCConfig, app?: ApplicationContract) {
     super({})
+    if (app) {
+      this.iocResolver = new IocResolver(app)
+    }
+  }
+
+  private getResolver(handler: string): IocResolver {
+    if (!this.iocResolver) {
+      throw new Error(
+        `Cannot resolve string based event handler "${handler}". IoC container is not provided to the event emitter`
+      )
+    }
+
+    return this.iocResolver
   }
 
   public createRedis(mappingName, config) {
@@ -23,6 +40,18 @@ export default class RPC
       id: mappingName,
       ...config,
     })
+  }
+
+  public async register(methodName: string, handler: string | ((message: any) => any)) {
+    if (typeof handler === 'string') {
+      handler = this.getResolver(handler).getEventHandler(methodName, handler)
+    }
+    this.use().register(methodName, handler)
+    return this
+  }
+
+  public async call(methodName: string, params: any): Promise<any> {
+    return this.use().call(methodName, params)
   }
 
   protected getDefaultMappingName() {

@@ -32,6 +32,7 @@
   },
   "homepage": "https://github.com/hermes-chatbot/adonis-rpc#readme",
   "devDependencies": {
+    "@adonisjs/application": "^5.1.6",
     "@adonisjs/mrm-preset": "^4.1.0",
     "@adonisjs/require-ts": "^2.0.5",
     "@types/node": "^15.12.2",
