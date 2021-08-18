@@ -42,7 +42,11 @@ export default class RPC
     })
   }
 
-  public async register(methodName: string, handler: string | ((message: any) => any)) {
+  public async call(methodName: string, params: any): Promise<any> {
+    return this.use().call(methodName, params)
+  }
+
+  public register(methodName: string, handler: string | ((message: any) => any)) {
     if (typeof handler === 'string') {
       handler = this.getResolver(handler).getEventHandler(methodName, handler)
     }
@@ -50,8 +54,11 @@ export default class RPC
     return this
   }
 
-  public async call(methodName: string, params: any): Promise<any> {
-    return this.use().call(methodName, params)
+  public namespace(namespace: string): this {
+    if (this.iocResolver) {
+      this.iocResolver.namespace(namespace)
+    }
+    return this
   }
 
   protected getDefaultMappingName() {
