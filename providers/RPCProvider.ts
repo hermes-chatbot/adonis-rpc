@@ -1,14 +1,14 @@
 import RPC from '../src/RPC'
-import { Application } from '@adonisjs/application'
+import { ApplicationContract } from '@ioc:Adonis/Core/Application'
 
 export default class RPCProvider {
   public static needsApplication = true
-  constructor(protected app: Application) {}
+  constructor(protected app: ApplicationContract) {}
 
   public async register(): Promise<void> {
     this.app.container.singleton('Hermes/RPC', () => {
       const config = this.app.container.use('Adonis/Core/Config').get('rpc', {})
-      return new RPC(config)
+      return new RPC(config, this.app)
     })
   }
   public async boot(): Promise<void> {}
