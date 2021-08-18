@@ -1,6 +1,6 @@
 {
   "name": "@hermes-chat/adonis-rpc",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "RPC Provider for Adonis 5",
   "main": "build/index.js",
   "scripts": {

@@ -49,7 +49,10 @@ declare module '@ioc:Hermes/RPC' {
     RPCMappings
   >
 
-  const RPCProvider: RPCManagerContract & RPCTransportContract
+  const RPCProvider: RPCManagerContract &
+    RPCTransportContract & {
+      namespace(namespace: string): typeof RPCProvider
+    }
 
   export default RPCProvider
 }
